@@ -33,8 +33,9 @@ func TestWrap(t *testing.T) {
 	Wrap(e)
 
 	expectedRouters := map[string]string{
-		"/debug/pprof":              "IndexHandler",
+		"/debug/pprof":              "RedirectTrailingSlash",
 		"/debug/pprof/":             "IndexHandler",
+		"/debug/pprof/allocs":       "AllocsHandler",
 		"/debug/pprof/heap":         "HeapHandler",
 		"/debug/pprof/goroutine":    "GoroutineHandler",
 		"/debug/pprof/block":        "BlockHandler",
@@ -56,8 +57,9 @@ func TestWrapGroup(t *testing.T) {
 		g := e.Group(prefix)
 		WrapGroup(prefix, g)
 		baseRouters := map[string]string{
-			"":              "IndexHandler",
+			"":              "RedirectTrailingSlash",
 			"/":             "IndexHandler",
+			"/allocs":       "AllocsHandler",
 			"/heap":         "HeapHandler",
 			"/goroutine":    "GoroutineHandler",
 			"/block":        "BlockHandler",

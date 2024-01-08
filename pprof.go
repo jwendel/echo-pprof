@@ -22,8 +22,9 @@ func WrapGroup(prefix string, g *echo.Group) {
 		Path    string
 		Handler echo.HandlerFunc
 	}{
-		{"GET", "", IndexHandler()},
+		{"GET", "", RedirectTrailingSlash()},
 		{"GET", "/", IndexHandler()},
+		{"GET", "/allocs", AllocsHandler()},
 		{"GET", "/heap", HeapHandler()},
 		{"GET", "/goroutine", GoroutineHandler()},
 		{"GET", "/block", BlockHandler()},
@@ -46,10 +47,24 @@ func WrapGroup(prefix string, g *echo.Group) {
 	}
 }
 
+func RedirectTrailingSlash() echo.HandlerFunc {
+	return func(ctx echo.Context) error {
+		return ctx.Redirect(301, ctx.Path()+"/")
+	}
+}
+
 // IndexHandler will pass the call from /debug/pprof to pprof.
 func IndexHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Index(ctx.Response().Writer, ctx.Request())
+		return nil
+	}
+}
+
+// AllocsHandler will pass the call from /debug/pprof/allocs to pprof.
+func AllocsHandler() echo.HandlerFunc {
+	return func(ctx echo.Context) error {
+		pprof.Handler("allocs").ServeHTTP(ctx.Response(), ctx.Request())
 		return nil
 	}
 }
