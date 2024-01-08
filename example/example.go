@@ -1,7 +1,7 @@
 package main
 
 import (
-	echopprof "github.com/sevenNt/echo-pprof"
+	echopprof "github.com/jwendel/echo-pprof"
 	"github.com/labstack/echo/v4"
 )
 
