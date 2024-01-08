@@ -1,12 +1,12 @@
 echo-pprof
 ========
 
-A wrapper for [Echo web framework](https://github.com/labstack/echo) to use `net/http/pprof` easily.
+A wrapper for [Echo web framework](https://github.com/labstack/echo) to use `net/http/pprof` easily.  (fork of https://github.com/sevennt/echo-pprof with updated deps).
 
 ## Install
 
 ```sh
-go get -u github.com/sevenNt/echo-pprof
+go get -u github.com/jwendel/echo-pprof
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ package main
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/sevenNt/echo-pprof"
+	"github.com/jwendel/echo-pprof"
 )
 
 func main() {
