@@ -14,7 +14,7 @@ func main() {
 
 	// automatically add routers for net/http/pprof
 	// e.g. /debug/pprof, /debug/pprof/heap, etc.
-	echopprof.Wrap(e)
+	echopprof.Wrap(e, "/debug/pprof")
 
 	// echopprof also plays well with *echo.Group
 	// prefix := "/debug/pprof"

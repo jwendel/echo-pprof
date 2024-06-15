@@ -8,8 +8,8 @@ import (
 )
 
 // Wrap adds several routes from package `net/http/pprof` to *echo.Echo object.
-func Wrap(e *echo.Echo) {
-	WrapGroup("", e.Group("/debug/pprof"))
+func Wrap(e *echo.Echo, pathPrefix string) {
+	WrapGroup("", e.Group(pathPrefix))
 }
 
 // Wrapper make sure we are backward compatible.

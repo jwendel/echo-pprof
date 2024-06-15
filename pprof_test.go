@@ -30,7 +30,7 @@ func checkRouters(routers []*echo.Route, t *testing.T, expectedRouters map[strin
 // go test github.com/jwendel/echo-pprof -v -run=TestWrap\$
 func TestWrap(t *testing.T) {
 	e := newServer()
-	Wrap(e)
+	Wrap(e, "/debug/pprof")
 
 	expectedRouters := map[string]string{
 		"/debug/pprof":              "RedirectTrailingSlash",
